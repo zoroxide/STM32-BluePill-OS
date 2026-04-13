@@ -1,0 +1,6 @@
+.claude/
+*.o
+*.d
+*.elf
+*.bin
+*.hex
