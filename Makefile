@@ -20,7 +20,7 @@ DRV_SOURCES = $(wildcard $(DRV_DIR)/16x2_LCD/*.c)        \
               $(wildcard $(DRV_DIR)/7_Segments/*.c)       \
               $(wildcard $(DRV_DIR)/I2C_OLED_Display/*.c) \
               $(wildcard $(DRV_DIR)/Keypad/*.c)           \
-              $(wildcard $(DRV_DIR)/PN532_NFC/*.c)
+              $(wildcard $(DRV_DIR)/RC522_RFID/*.c)
 
 ALL_SOURCES = $(SRC_SOURCES) $(HAL_SOURCES) $(DRV_SOURCES)
 OBJECTS     = $(patsubst %.c,$(BLD_DIR)/%.o,$(ALL_SOURCES))

@@ -83,10 +83,21 @@ static Keypad_Config_t keypad_cfg = {
 //     .common_anode = 1,
 // };
 
-/* ---- PN532 NFC via USART1 (TX=PA9, RX=PA10) ---- */
-static PN532_Config_t nfc_cfg = {
-    .transport = PN532_TRANSPORT_UART,
-    .uart      = UART_1,
+/* ---- RFID-RC522 (MFRC522) via SPI2 ----
+ *
+ * Pins:  SCK=PB13  MISO=PB14  MOSI=PB15  SS=PB9  RST=PB8
+ *
+ * PIN CONFLICT: PB13/14/15 are also LCD D6/D5/D4.  When SPI2 is
+ * enabled those pins are driven by the SPI peripheral as AF push-pull,
+ * so the 16x2 LCD displays garbage until the RFID app exits and
+ * re-initialises the LCD (LCD_Init(&lcd_pins)).  The RFID app uses
+ * the OLED for all feedback while active.
+ */
+static RC522_Config_t rc522_cfg = {
+    .spi      = SPI_2,
+    .ss_port  = GPIO_PORT_B, .ss_pin  = GPIO_PIN_9,
+    .rst_port = GPIO_PORT_B, .rst_pin = GPIO_PIN_8,
+    .has_rst  = 1,
 };
 
 #endif /* CONFIG_H */

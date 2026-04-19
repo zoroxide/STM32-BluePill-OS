@@ -23,7 +23,7 @@ if not exist build\Drivers\16x2_LCD mkdir build\Drivers\16x2_LCD
 if not exist build\Drivers\7_Segments mkdir build\Drivers\7_Segments
 if not exist build\Drivers\I2C_OLED_Display mkdir build\Drivers\I2C_OLED_Display
 if not exist build\Drivers\Keypad mkdir build\Drivers\Keypad
-if not exist build\Drivers\PN532_NFC mkdir build\Drivers\PN532_NFC
+if not exist build\Drivers\RC522_RFID mkdir build\Drivers\RC522_RFID
 
 REM Compile application sources
 echo [CC] src/main.c
@@ -80,13 +80,13 @@ echo [CC] Drivers/Keypad/Keypad.c
 arm-none-eabi-gcc %CFLAGS% -c Drivers/Keypad/Keypad.c -o build/Drivers/Keypad/Keypad.o
 if errorlevel 1 ( echo FAILED: Drivers/Keypad & pause & exit /b 1 )
 
-echo [CC] Drivers/PN532_NFC/PN532.c
-arm-none-eabi-gcc %CFLAGS% -c Drivers/PN532_NFC/PN532.c -o build/Drivers/PN532_NFC/PN532.o
-if errorlevel 1 ( echo FAILED: Drivers/PN532 & pause & exit /b 1 )
+echo [CC] Drivers/RC522_RFID/RC522.c
+arm-none-eabi-gcc %CFLAGS% -c Drivers/RC522_RFID/RC522.c -o build/Drivers/RC522_RFID/RC522.o
+if errorlevel 1 ( echo FAILED: Drivers/RC522 & pause & exit /b 1 )
 
 REM Link
 echo [LD] build/firmware.elf
-arm-none-eabi-gcc build/src/main.o build/src/startup.o build/HAL/IO/IO.o build/HAL/ISR/ISR.o build/HAL/UART/UART.o build/HAL/SPI/SPI.o build/HAL/I2C/I2C.o build/HAL/ADC/ADC.o build/HAL/DAC/DAC.o build/Drivers/16x2_LCD/LCD.o build/Drivers/7_Segments/SEG7.o build/Drivers/I2C_OLED_Display/OLED.o build/Drivers/Keypad/Keypad.o build/Drivers/PN532_NFC/PN532.o %LDFLAGS% -o build/firmware.elf
+arm-none-eabi-gcc build/src/main.o build/src/startup.o build/HAL/IO/IO.o build/HAL/ISR/ISR.o build/HAL/UART/UART.o build/HAL/SPI/SPI.o build/HAL/I2C/I2C.o build/HAL/ADC/ADC.o build/HAL/DAC/DAC.o build/Drivers/16x2_LCD/LCD.o build/Drivers/7_Segments/SEG7.o build/Drivers/I2C_OLED_Display/OLED.o build/Drivers/Keypad/Keypad.o build/Drivers/RC522_RFID/RC522.o %LDFLAGS% -o build/firmware.elf
 if errorlevel 1 ( echo Linking failed! & pause & exit /b 1 )
 
 arm-none-eabi-objcopy -O binary build/firmware.elf build/firmware.bin

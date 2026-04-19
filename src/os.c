@@ -78,7 +78,7 @@ static void os_beep(uint32_t freq_hz, uint32_t duration_ms) {
 #include "apps/help.c"
 #include "apps/settings.c"
 #include "apps/graphics.c"
-#include "apps/nfc.c"
+#include "apps/rfid.c"
 
 /* ---- Menu ---- */
 #define MENU_NUM_ITEMS 13
@@ -93,7 +93,7 @@ static const char * const menu_items[] = {
     "Buzzer Fun",
     "LED Control",
     "Relays",
-    "NFC Reader",
+    "RFID (RC522)",
     "HW Check",
     "Help",
     "Settings"
@@ -111,7 +111,7 @@ static const app_func_t menu_apps[] = {
     app_buzzer,
     app_leds,
     app_relays,
-    app_nfc,
+    app_rfid,
     app_hwcheck,
     app_help,
     app_settings
